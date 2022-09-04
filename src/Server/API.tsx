@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-export const get = (query: string, filter: any) => {
+export const get = (url: string, filter: any) => {
     return new Promise<any[]>(function (fulfill, reject) {
         axios({
             method: "get",
-            url: query + filter,
+            url: url + filter,
             headers: {Accept: "application/json;odata=verbose"}
         }).then((response: any) => {
             console.log(response);
@@ -13,3 +13,17 @@ export const get = (query: string, filter: any) => {
           });
     })
 }
+
+export const post = (url: string, data: any) => {
+    const dataToPost = {...data}
+        axios({
+            method: "post",
+            url: url + data,
+            headers: {Accept: "application/json;odata=verbose",
+            "Content-Type": "application/json;odata=verbose",
+        },
+        data: dataToPost
+        })
+    
+}
+
